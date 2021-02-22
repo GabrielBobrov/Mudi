@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head}"></head>
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+	<div th:replace="~{base :: titulo('Novo Pedido')}"></div>
+	<div class="card mt-3">
+	<form th:object="${requisicaoNovoPedidoDto}" action="/pedido/novo" method="POST" class="card-body" >
+		<div class="fomr-group">
+			<label  for="nomeProduto">Produto</label>
+			<input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control"  placeholder="Nome do produto"/>
+			<small>Informe o nome do produto</small>
+			<div class="invalid-feedback" th:errors="*{nomeProduto}"></div>
+		</div>
+		
+		<div  class="fomr-group">
+			<label for="urlProduto">Url</label>
+			<input th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control"  placeholder="Url do produto desejado"/>
+			<small>Procure em um site o produto desejado e cole a url da página aqui</small>
+			<div class="invalid-feedback" th:errors="*{urlProduto}"></div>
+		</div>
+		
+		<div  class="fomr-group">
+			<label for="urlImagem">Imagem</label>
+			<input th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control"  placeholder="Url da imagem  do produto desejado"/>
+			<small>Procure em um site a imagem do produto desejado e cole a url da página aqui</small>
+			<div class="invalid-feedback" th:errors="*{urlImagem}"></div>
+			
+		</div>
+		
+		<div  class="fomr-group">
+			<label for="descricao">Descrição</label>
+			<textarea th:field="*{descricao}" class="form-control"   placeholder="Dê uma descrição do produto desejado para ajudar o comprador"></textarea>
+		</div>
+		<button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
+		
+		
+	</form>
+	</div>
+	</div>
+</body>
+</html>
