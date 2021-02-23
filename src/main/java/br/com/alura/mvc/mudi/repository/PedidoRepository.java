@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.alura.mvc.mudi.model.Pedido;
+import br.com.alura.mvc.mudi.model.StatusPedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 	List<Pedido> findByNomeProduto(String nomeProduto);
+
+	List<Pedido> findByStatusPedido(StatusPedido status);
 
 }
