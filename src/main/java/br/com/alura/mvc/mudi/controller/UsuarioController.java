@@ -1,10 +1,7 @@
 package br.com.alura.mvc.mudi.controller;
 
 import java.security.Principal;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,26 +16,34 @@ import br.com.alura.mvc.mudi.model.StatusPedido;
 import br.com.alura.mvc.mudi.repository.PedidoRepository;
 
 @Controller
-@RequestMapping("/home")
-public class HomeController {
-
+@RequestMapping("/usuario")
+public class UsuarioController {
 	@Autowired
 	private PedidoRepository pedidoRepository;
-
-	@GetMapping
+	
+	@GetMapping("/pedido")
 	public String home(Model model, Principal principal) {
-		List<Pedido> pedidos = pedidoRepository.findByStatusPedido(StatusPedido.ENTREGUE);
+		List<Pedido> pedidos = pedidoRepository.findAllByUsuario(principal.getName());
 
 		model.addAttribute("pedidos", pedidos);
 
-		return "/home";
+		return "/usuario/home";
 	}
 
-	
+	@GetMapping("/pedido/{status}")
+	public String byStatus(@PathVariable("status") String status,Model model, Principal principal) {
+		List<Pedido> pedidos = pedidoRepository.findByStatusUsuario(StatusPedido.valueOf(status.toUpperCase()), principal.getName());
+
+		model.addAttribute("pedidos", pedidos);
+		model.addAttribute("status", status);
+
+		return "/usuario/home";
+	}
 	
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String onError() {
-		return"redirect:/home";
+		return"redirect:/usuario/home";
 		
 	}
+
 }

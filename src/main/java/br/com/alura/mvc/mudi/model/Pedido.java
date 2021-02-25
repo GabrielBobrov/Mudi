@@ -3,12 +3,15 @@ package br.com.alura.mvc.mudi.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pedido {
@@ -23,11 +26,16 @@ public class Pedido {
 	
 	private LocalDate dataEntrega;
 	
+	@Column(length = 3000)
 	private String urlProduto;
 	
+	@Column(length = 3000)
 	private String urlImagem;
 	
 	private String descricao;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusPedido statusPedido;
@@ -83,6 +91,14 @@ public class Pedido {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	
 	
 
