@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 public class Pedido {
 	
@@ -92,9 +94,7 @@ public class Pedido {
 		this.descricao = descricao;
 	}
 	
-	public User getUser() {
-		return user;
-	}
+	
 	public void setUser(User user) {
 		this.user = user;
 	}

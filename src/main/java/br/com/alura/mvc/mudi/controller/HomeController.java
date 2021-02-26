@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,7 +29,10 @@ public class HomeController {
 
 	@GetMapping
 	public String home(Model model, Principal principal) {
-		List<Pedido> pedidos = pedidoRepository.findByStatusPedido(StatusPedido.ENTREGUE);
+		
+		Sort sort = Sort.by("dataEntrega").descending();
+		PageRequest page = PageRequest.of(0, 10,sort);
+		List<Pedido> pedidos = pedidoRepository.findByStatusPedido(StatusPedido.ENTREGUE,page);
 
 		model.addAttribute("pedidos", pedidos);
 
