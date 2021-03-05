@@ -27,7 +27,7 @@ public class Oferta {
 	
 	private String comentario;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Pedido pedido;
 

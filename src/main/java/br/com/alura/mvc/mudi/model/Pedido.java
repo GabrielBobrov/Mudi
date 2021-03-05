@@ -40,14 +40,14 @@ public class Pedido {
 	
 	private String descricao;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
 	private User user;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusPedido statusPedido;
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "pedido",fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "pedido",fetch = FetchType.EAGER)
 	private List<Oferta> ofertas;
 	
 	

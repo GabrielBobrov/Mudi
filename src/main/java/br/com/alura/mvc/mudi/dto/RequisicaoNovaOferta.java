@@ -7,8 +7,10 @@ import java.time.format.DateTimeFormatter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import br.com.alura.mvc.mudi.model.Oferta;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.alura.mvc.mudi.model.Oferta;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class RequisicaoNovaOferta {
 	
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
