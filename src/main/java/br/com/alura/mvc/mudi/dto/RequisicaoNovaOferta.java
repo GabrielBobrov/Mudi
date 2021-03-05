@@ -20,7 +20,7 @@ public class RequisicaoNovaOferta {
 	private String valor;
 	
 	@Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$")
-	@NotNull
+	@NotNull(message = "Digite uma data válida!")
 	private String dataEntrega;
 	
 	private String comentario;
